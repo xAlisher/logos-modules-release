@@ -76,7 +76,8 @@ version; clients pick it up on their next catalog refresh.
     ├── _release-module.yml               # signing config — the ONE place to edit it
     ├── release-module.yml.template       # per-module workflow template (don't run; it's a template)
     ├── release-all.yml                   # umbrella; discovers modules from .gitmodules
-    └── rebuild-index.yml                 # rebuilds index.json after each release
+    ├── rebuild-index.yml                 # rebuilds index.json after each release
+    └── unpublish.yml                     # manually remove a module / version from the catalog
 ```
 
 ### Workflow architecture
@@ -99,6 +100,12 @@ one place:
 - **`rebuild-index.yml`** — thin passthrough to the action's
   index-rebuilder. Auto-triggered after each release; also runs on a
   6-hourly catch-up schedule.
+- **`unpublish.yml`** — manual (Actions tab). Removes a whole module
+  or one specific version: deletes the release(s) + optionally their
+  tags, then rebuilds the index. **Run with `dry_run: true` first** —
+  deletion is irreversible. Re-running a release for an unchanged
+  submodule is a fast no-op (the action skips builds whose
+  `<module>-v<version>` is already published).
 
 Every workflow declares `permissions: contents: write` because a
 forked repo's default `GITHUB_TOKEN` is read-only, and the release job
