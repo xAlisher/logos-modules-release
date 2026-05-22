@@ -47,10 +47,11 @@ is built exactly this way.
    per-module release workflow. Repeat for each module.
 
 4. **Publish.** From the repo's **Actions** tab, run **Release all
-   modules** (or an individual **Release \<module\>**). The action
-   builds each `.lgx`, verifies it, optionally signs it, cuts a
-   `<module>-v<version>` GitHub release, and rolls everything up into
-   the `index` release that clients read.
+   modules** (or an individual **Release \<module\>**) — or, from a
+   terminal, `./scripts/catalog.sh release-all`. The action builds each
+   `.lgx`, verifies it, optionally signs it, cuts a `<module>-v<version>`
+   GitHub release, and rolls everything up into the `index` release that
+   clients read.
 
 5. **Point a client at it.** Add your fork's `logos-repo.json` raw URL
    as a repository in the package-manager UI / `lgpd`:
@@ -71,7 +72,8 @@ version; clients pick it up on their next catalog refresh.
 ├── .gitmodules                           # submodule declarations (starts empty)
 ├── submodules/                           # one git submodule per module (you add these)
 ├── scripts/
-│   └── add-module.sh                     # add a submodule + generate its workflow
+│   ├── add-module.sh                     # add a submodule + generate its workflow
+│   └── catalog.sh                        # run the catalog workflows via `gh` (no Actions tab)
 └── .github/workflows/
     ├── _release-module.yml               # signing config — the ONE place to edit it
     ├── release-module.yml.template       # per-module workflow template (don't run; it's a template)
