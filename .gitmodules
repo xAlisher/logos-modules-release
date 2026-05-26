@@ -16,3 +16,18 @@
 ; After cloning a fork, materialise the submodule working trees with:
 ;
 ;   git submodule update --init --recursive
+[submodule "submodules/stash-basecamp"]
+	path = submodules/stash-basecamp
+	url = https://github.com/xAlisher/stash-basecamp
+[submodule "submodules/beacon-basecamp"]
+	path = submodules/beacon-basecamp
+	url = https://github.com/xAlisher/beacon-basecamp
+[submodule "submodules/keeper-basecamp"]
+	path = submodules/keeper-basecamp
+	url = https://github.com/xAlisher/keeper-basecamp
+[submodule "submodules/cord-basecamp"]
+	path = submodules/cord-basecamp
+	url = https://github.com/xAlisher/cord-basecamp
+[submodule "submodules/keycard-basecamp"]
+	path = submodules/keycard-basecamp
+	url = https://github.com/xAlisher/keycard-basecamp
